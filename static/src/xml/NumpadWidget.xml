@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<t t-name="NumpadWidget" t-inherit="point_of_sale.NumpadWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('numpad')]" position="replace">
+            <div class="numpad">
+            <button class="input-button number-char" t-on-click="sendInput('1')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">1</button>
+            <button class="input-button number-char" t-on-click="sendInput('2')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">2</button>
+            <button class="input-button number-char" t-on-click="sendInput('3')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">3</button>
+            <button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'quantity', 'disabled-mode': props.isDisable }" t-on-click="changeMode('quantity')" t-att-disabled="props.isDisable">Qty</button>
+            <br />
+            <button class="input-button number-char" t-on-click="sendInput('4')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">4</button>
+            <button class="input-button number-char" t-on-click="sendInput('5')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">5</button>
+            <button class="input-button number-char" t-on-click="sendInput('6')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">6</button>
+            <button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'discount', 'disabled-mode': !hasManualDiscount || props.isDisable }" t-att-disabled="props.isDisable || !hasManualDiscount" t-on-click="changeMode('discount')">Disc</button>
+            <br />
+            <button class="input-button number-char" t-on-click="sendInput('7')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">7</button>
+            <button class="input-button number-char" t-on-click="sendInput('8')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">8</button>
+            <button class="input-button number-char" t-on-click="sendInput('9')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">9</button>
+            <button class="mode-button" t-att-class="{'selected-mode': props.activeMode === 'price', 'disabled-mode': !hasPriceControlRights || props.isDisable }" t-att-disabled="props.isDisable || !hasPriceControlRights" t-on-click="changeMode('price')">Price</button>
+            <br />
+            <button class="input-button numpad-minus" t-att-class="{ 'disabled-mode': props.disableSign || props.isDisable }" t-on-click="sendInput('-')" t-att-disabled="props.isDisable">+/-</button>
+            <button class="input-button number-char" t-on-click="sendInput('0')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">0</button>
+            <button class="input-button number-char" t-on-click="sendInput(decimalSeparator)" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">
+                <t t-esc="decimalSeparator" />
+            </button>
+            <button class="input-button numpad-backspace" t-on-click="sendInput('Backspace')" t-att-disabled="props.isDisable" t-att-class="{ 'disabled-mode': props.isDisable }">
+                <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png"
+                     width="24" height="21" alt="Backspace" />
+            </button>
+        </div>
+        </xpath>
+ </t>
+</templates>

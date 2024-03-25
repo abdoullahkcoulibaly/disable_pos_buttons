@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('leftpane')]//div[hasclass('pads')]//div[hasclass('control-buttons')]"
+               position="replace">
+             <div class="control-buttons">
+                 <InvoiceButton t-if="env.pos.config.module_account" order="_selectedSyncedOrder" />
+                 <ReprintReceiptButton order="_selectedSyncedOrder" />
+             </div>
+        </xpath>
+        <xpath expr="//div[hasclass('leftpane')]//div[hasclass('pads')]//div[hasclass('subpads')]"
+               position="replace">
+             <div class="subpads">
+                 <t t-set="_actionName">Refund</t>
+                 <ActionpadWidget client="getSelectedClient()" actionName="_actionName" actionToTrigger="'do-refund'"
+                                  isActionButtonHighlighted="getHasItemsToRefund()" isDisable="hasUserControlRights"/>
+                 <NumpadWidget disabledModes="['price', 'discount']" activeMode="_selectedOrderlineId and 'quantity'"
+                               disableSign="true" isDisable="hasUserControlRights"/>
+             </div>
+         </xpath>
+
+    </t>
+
+
+</templates>
